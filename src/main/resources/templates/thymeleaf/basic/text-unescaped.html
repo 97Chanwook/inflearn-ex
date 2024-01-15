@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <!-- th:utext : escape를 하지 않고 텍스트를 보여주는 방법 -->
+  <h1>th:text vs th:utext</h1>
+  <ul>
+    <!--Model.addAttribute에 삽입한 데이터 가져오기-->
+    <li>th:text 사용 <span th:text="${data}"></span></li>
+    <li>th:utext 사용 <span th:utext="${data}"></span></li>
+  </ul>
+
+  <h1><span th:inline="none">[[...]] vs [(...)]</span></h1>
+  <ul>
+    <li><span th:inline="none">[[...]]</span>[[${data}]]</li>
+    <li><span th:inline="none">[(...)]</span>[(${data})]</li>
+  </ul>
+</body>
+</html>
