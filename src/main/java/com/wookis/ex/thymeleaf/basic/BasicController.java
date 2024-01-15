@@ -1,6 +1,10 @@
 package com.wookis.ex.thymeleaf.basic;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,6 +54,27 @@ public class BasicController {
         return "thymeleaf/basic/variable";
     }
 
+    @GetMapping("/basic-objects")
+    public String basicObjects(HttpSession session, HttpServletRequest request,
+                               HttpServletResponse response, Model model){
+
+        session.setAttribute("sessionData","Hello Session");
+
+        model.addAttribute("request",request);
+        model.addAttribute("response",response);
+        model.addAttribute("session",session);
+        model.addAttribute("servletContext",request.getServletContext());
+
+        return "thymeleaf/basic/basic-objects";
+    }
+
+    @Component("helloBean")
+    public class HelloBean {
+        public String hello(String data) {
+            return "Hello "+data;
+        }
+    }
+
     //Sample Data 를 위한 클래스 생성
     @Data
     static class User {
@@ -61,5 +86,7 @@ public class BasicController {
             this.age = age;
         }
     }
+
+
 
 }
