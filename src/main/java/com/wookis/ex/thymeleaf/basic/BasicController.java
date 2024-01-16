@@ -77,6 +77,13 @@ public class BasicController {
         return "thymeleaf/basic/date";
     }
 
+    @GetMapping("/link")
+    public String link(Model model) {
+        model.addAttribute("param1","data1");
+        model.addAttribute("param2","data2");
+        return "thymeleaf/basic/link";
+    }
+
     @Component("helloBean")
     public class HelloBean {
         public String hello(String data) {
