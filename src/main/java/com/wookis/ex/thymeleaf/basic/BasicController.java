@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/thymeleaf/basic")
 public class BasicController {
+
+
 
     @GetMapping("/text-basic")
     public String textBasic(Model model) {
@@ -66,6 +69,12 @@ public class BasicController {
         model.addAttribute("servletContext",request.getServletContext());
 
         return "thymeleaf/basic/basic-objects";
+    }
+
+    @GetMapping("/date")
+    public String date(Model model) {
+        model.addAttribute("localDateTime", LocalDateTime.now());
+        return "thymeleaf/basic/date";
     }
 
     @Component("helloBean")
