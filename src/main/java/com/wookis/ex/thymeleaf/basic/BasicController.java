@@ -84,6 +84,18 @@ public class BasicController {
         return "thymeleaf/basic/link";
     }
 
+    //리터럴
+    // 타임리프에서 문자 리터럴은 작은 따옴표('')로 꼭 감싸야 한다.
+    @GetMapping("/literal")
+    public String literal(Model model) {
+        model.addAttribute("data","Hello Spring");
+
+        return "thymeleaf/basic/literal";
+    }
+
+
+
+
     @Component("helloBean")
     public class HelloBean {
         public String hello(String data) {
