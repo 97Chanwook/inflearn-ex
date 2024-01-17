@@ -12,4 +12,9 @@ public class TemplateController {
     public String template() {
         return "thymeleaf/template/fragment/fragmentMain";
     }
+
+    @GetMapping("/layout")
+    public String layout() {
+        return "thymeleaf/template/layout/layoutMain";
+    }
 }
