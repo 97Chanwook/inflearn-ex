@@ -101,6 +101,11 @@ public class BasicController {
         return "thymeleaf/basic/operation";
     }
 
+    //속성 값
+    @GetMapping("/attribute")
+    public String attribute() {
+        return "thymeleaf/basic/attribute";
+    }
 
 
 

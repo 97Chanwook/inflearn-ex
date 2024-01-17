@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
@@ -7,18 +7,18 @@
 <ul>
   <li>텍스트
     <ul>
-      <li><a href="/thymeleaf/basic/text-basic">텍스트 출력 기본</a></li>
-      <li><a href="/thymeleaf/basic/text-unescaped">텍스트 text, utext</a></li>
+      <li><a th:href="@{/thymeleaf/basic/text-basic}">텍스트 출력 기본</a></li>
+      <li><a  th:href="@{/thymeleaf/basic/text-unescaped}">텍스트 text, utext</a></li>
     </ul>
   </li>
   <li>표준 표현식 구문
     <ul>
-      <li><a href="/thymeleaf/basic/variable">변수 - SpringEL</a></li>
-      <li><a href="/thymeleaf/basic/basic-objects?paramData=HelloParam">기본 객체들</a></li>
-      <li><a href="/thymeleaf/basic/date">유틸리티 객체와 날짜</a></li>
-      <li><a href="/thymeleaf/basic/link">링크 URL</a></li>
-      <li><a href="/thymeleaf/basic/literal">리터럴</a></li>
-      <li><a href="/thymeleaf/basic/operation">연산</a></li>
+      <li><a th:href="@{/thymeleaf/basic/variable}">변수 - SpringEL</a></li>
+      <li><a th:href="@{/thymeleaf/basic/basic-objects(paramData=HelloParam)}">기본 객체들</a></li>
+      <li><a th:href="@{/thymeleaf/basic/date}">유틸리티 객체와 날짜</a></li>
+      <li><a th:href="@{/thymeleaf/basic/link}">링크 URL</a></li>
+      <li><a th:href="@{/thymeleaf/basic/literal}">리터럴</a></li>
+      <li><a th:href="@{/thymeleaf/basic/operation}">연산</a></li>
     </ul>
   </li>
   <li>속성 값 설정

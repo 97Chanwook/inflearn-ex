@@ -11,6 +11,6 @@ public class ThymeLeafController {
 
     @GetMapping
     public String indexHtml(Model model) {
-        return "thymeleaf/index";
+        return "thymeleaf/th_index";
     }
 }
