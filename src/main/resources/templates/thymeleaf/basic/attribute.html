@@ -9,9 +9,9 @@
 <input type="text" name="mock" th:name="userA"> <!-- 기존 네임 mock을 지우고 userA 로 변경 -->
 
 <h1>속성 추가</h1>
--th:attrappend = <input type="text" class="text" th:attrappend="class=' large'"/><br/>
--th:attpreappend = <input type="text" class="text" th:attrprepend="class='large '"/><br/>
--th:classappend = <input type="text" class="text" th:classappend="large"/><br/>
+-th:attrappend = <input type="text" class="text" th:attrappend="class=' large'"/><br/>  <!-- 속성 값의 뒤에 값을 추가한다. -->
+-th:attpreappend = <input type="text" class="text" th:attrprepend="class='large '"/><br/> <!-- 속성 값의 앞에 값을 추가한다. -->
+-th:classappend = <input type="text" class="text" th:classappend="large"/><br/> <!-- 클래스 속성을 추가한다. -->
 
 <h1>Checked 처리</h1>
 - checked o <input type="checkbox" name="active" th:checked="true"/><br/>
