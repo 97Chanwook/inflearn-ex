@@ -17,4 +17,9 @@ public class TemplateController {
     public String layout() {
         return "thymeleaf/template/layout/layoutMain";
     }
+
+    @GetMapping("/layoutExtend")
+    public String layoutExtend() {
+        return "thymeleaf/template/layoutExtend/layoutExtendMain";
+    }
 }
