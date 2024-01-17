@@ -126,7 +126,11 @@ public class BasicController {
         return "thymeleaf/basic/comments";
     }
 
-    
+    @GetMapping("/block")
+    public String block(Model model) {
+        addUsers(model);
+        return "thymeleaf/basic/block";
+    }
 
     private void addUsers(Model model) {
         model.addAttribute("users",List.of(
