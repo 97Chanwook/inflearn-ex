@@ -107,6 +107,21 @@ public class BasicController {
         return "thymeleaf/basic/attribute";
     }
 
+    //반복문
+    @GetMapping("/each")
+    public String each(Model model) {
+        addUsers(model);
+        return "thymeleaf/basic/each";
+    }
+
+
+    private void addUsers(Model model) {
+        model.addAttribute("users",List.of(
+                new User("UserA", 10),
+                new User("UserB", 20),
+                new User("UserC", 30)
+        ));
+    }
 
 
 
