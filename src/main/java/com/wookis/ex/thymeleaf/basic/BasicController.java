@@ -114,6 +114,13 @@ public class BasicController {
         return "thymeleaf/basic/each";
     }
 
+    @GetMapping("/condition")
+    public String condition(Model model) {
+        addUsers(model);
+
+        return "thymeleaf/basic/condition";
+    }
+
 
     private void addUsers(Model model) {
         model.addAttribute("users",List.of(
@@ -122,8 +129,6 @@ public class BasicController {
                 new User("UserC", 30)
         ));
     }
-
-
 
     @Component("helloBean")
     public class HelloBean {
