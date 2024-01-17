@@ -117,10 +117,16 @@ public class BasicController {
     @GetMapping("/condition")
     public String condition(Model model) {
         addUsers(model);
-
         return "thymeleaf/basic/condition";
     }
 
+    @GetMapping("/comments")
+    public String comments(Model model) {
+        model.addAttribute("data","Spring!");
+        return "thymeleaf/basic/comments";
+    }
+
+    
 
     private void addUsers(Model model) {
         model.addAttribute("users",List.of(
