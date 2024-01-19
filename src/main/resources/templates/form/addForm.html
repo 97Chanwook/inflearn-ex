@@ -35,17 +35,29 @@
 
         <hr class="my-4">
         <!--/*-->
+        <!--
         /*
-        * checkbox 를 체크하면 Html Form 에서 checkbox = on 이라는 값을 넘긴다 (로그 확인 결과 => item.open = true)
-        * checkbox 를 체크하지 않으면 checkbox 의 필드 자체가 전송되지 않는다. (로그 확인 결과 => item.open = null)
-        * 해당 문제를 해결하기 위해서 Spring MVC 에서는 기존 체크 박스 이름 앞에 언더스코어'_' 를 붙여서 전송하면 체크를 해제했다고 인식할 수 있다.  (로그 확인 결과 => item.open = false)
+        checkbox 를 체크하면 Html Form 에서 checkbox = on 이라는 값을 넘긴다 (로그 확인 결과 => item.open = true)
+        checkbox 를 체크하지 않으면 checkbox 의 필드 자체가 전송되지 않는다. (로그 확인 결과 => item.open = null)
+        해당 문제를 해결하기 위해서 Spring MVC 에서는 기존 체크 박스 이름 앞에 언더스코어'_' 를 붙여서 전송하면 체크를 해제했다고 인식할 수 있다.  (로그 확인 결과 => item.open = false)
         */
-        <!--*/-->
+        Spring 에서 사용하는 CheckBox
         <div>판매 여부</div>
         <div>
             <div class="form-check">
                 <input type="checkbox" id="open" name="open" class="form-check-input">
-                <input type="hidden" name="_open" value="on"><!--/*히든 필드 추가*/-->
+                <input type="hidden" name="_open" value="on">&lt;!&ndash;/*히든 필드 추가*/&ndash;&gt;
+                <label for="open" class="form-check-label">판매 오픈</label>
+            </div>
+        </div>
+        -->
+        <!--*/-->
+
+        <!--/* Thymeleaf */-->
+        <div>판매 여부</div>
+        <div>
+            <div class="form-check">
+                <input type="checkbox" id="open" th:field="*{open}" class="form-check-input">
                 <label for="open" class="form-check-label">판매 오픈</label>
             </div>
         </div>
