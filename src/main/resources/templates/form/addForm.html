@@ -37,9 +37,9 @@
         <!--/*-->
         <!--
         /*
-        checkbox 를 체크하면 Html Form 에서 checkbox = on 이라는 값을 넘긴다 (로그 확인 결과 => item.open = true)
-        checkbox 를 체크하지 않으면 checkbox 의 필드 자체가 전송되지 않는다. (로그 확인 결과 => item.open = null)
-        해당 문제를 해결하기 위해서 Spring MVC 에서는 기존 체크 박스 이름 앞에 언더스코어'_' 를 붙여서 전송하면 체크를 해제했다고 인식할 수 있다.  (로그 확인 결과 => item.open = false)
+        * checkbox 를 체크하면 Html Form 에서 checkbox = on 이라는 값을 넘긴다 (로그 확인 결과 => item.open = true)
+        * checkbox 를 체크하지 않으면 checkbox 의 필드 자체가 전송되지 않는다. (로그 확인 결과 => item.open = null)
+        * 해당 문제를 해결하기 위해서 Spring MVC 에서는 기존 체크 박스 이름 앞에 언더스코어'_' 를 붙여서 전송하면 체크를 해제했다고 인식할 수 있다.  (로그 확인 결과 => item.open = false)
         */
         Spring 에서 사용하는 CheckBox
         <div>판매 여부</div>
@@ -61,6 +61,20 @@
                 <label for="open" class="form-check-label">판매 오픈</label>
             </div>
         </div>
+
+        <!--/*-->
+        /*
+        * 1. th:field 의 regions 는 ${item.regions} 이다.
+        * 2. th:for="${#ids.prev('regions')}"
+        * => #ids : 타임리프에서 제공하는 것으로, th:field 로 인해 동적으로 생성된 ID의 값을 인식하고 기져온다.
+        */
+        <!--*/-->
+        <div>등록 지역</div>
+        <div th:each="region : ${regions}" class="form-check form-check-inline">
+            <input type="checkbox" th:field="*{regions}" th:value="${region.key}" class="form-check-input">
+            <label th:for="${#ids.prev('regions')}" th:text="${region.value}" class="form-check-label"></label>
+        </div>
+
 
         <hr class="my-4">
 
