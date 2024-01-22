@@ -47,7 +47,7 @@ public class ValidationItemControllerV2 {
 
     //BindingResult는 항상 @ModelAttribute로 넘어온 모델 뒤에 선언해야한다.
     @PostMapping("/add")
-    public String addItem(@ModelAttribute Item item, BindingResult bindingResult,
+    public String addItemV1(@ModelAttribute Item item, BindingResult bindingResult,
                           RedirectAttributes redirectAttributes, Model model) {
 
         //검증 로직
