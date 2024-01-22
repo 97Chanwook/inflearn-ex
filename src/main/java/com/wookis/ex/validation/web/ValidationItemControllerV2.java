@@ -94,7 +94,7 @@ public class ValidationItemControllerV2 {
     //'argument' : 메ㅣ지에서 사용하는 인자
     //'defaultMessage' : 기본 오류 메시지
 
-    @PostMapping("/add")
+//    @PostMapping("/add")
     public String addItemV2(@ModelAttribute Item item, BindingResult bindingResult,
                             RedirectAttributes redirectAttributes, Model model) {
 
@@ -133,6 +133,48 @@ public class ValidationItemControllerV2 {
         return "redirect:/validation/v2/items/{itemId}";
     }
 
+
+    @PostMapping("/add")
+    public String addItemV3(@ModelAttribute Item item, BindingResult bindingResult,
+                            RedirectAttributes redirectAttributes, Model model) {
+
+        //검증 로직
+        if (!StringUtils.hasText(item.getItemName())) {
+            //new FieldError("Object","field", "거절된 값", "데이터가 넘어오지 않았냐 여부", "메시지 코드(errors.properties)", null, "message")
+            bindingResult.addError(new FieldError("item","itemName",item.getItemName(),false,
+                    new String[] {"required.item.itemName"}, null, null));
+        }
+
+        if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 1000000) {
+            bindingResult.addError(new FieldError("item","price",item.getPrice(),false,
+                    new String[] {"range.item.price"}, new Object[]{1000,1000000}, null));
+        }
+
+        if (item.getQuantity() == null || item.getQuantity() >= 9999) {
+            bindingResult.addError(new FieldError("item","quantity",item.getPrice(),false,
+                    new String[] {"max.item.quantity"}, new Object[]{9999}, null));
+        }
+
+        //특정 필드가 아닌 복합 룰 검증
+        if (item.getPrice() != null && item.getQuantity() != null) {
+            int resultPrice = item.getPrice() * item.getQuantity();
+            if (resultPrice < 10000) {
+                //특정 필드가 없기 때문에 ObjectError 로 넘긴다.
+                bindingResult.addError(new ObjectError("item",new String[]{"totalPriceMin"},new Object[]{10000},null));
+            }
+        }
+
+        // 검증에 실패하면 다시 입력 폼으로
+        if (bindingResult.hasErrors()) {
+            log.error("Errors = {}",bindingResult);
+            return "validation/v2/addForm";
+        }
+
+        Item savedItem = itemRepository.save(item);
+        redirectAttributes.addAttribute("itemId", savedItem.getId());
+        redirectAttributes.addAttribute("status", true);
+        return "redirect:/validation/v2/items/{itemId}";
+    }
 
 
 
