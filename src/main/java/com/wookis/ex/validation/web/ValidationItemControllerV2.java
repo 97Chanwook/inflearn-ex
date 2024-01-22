@@ -85,6 +85,15 @@ public class ValidationItemControllerV2 {
         return "redirect:/validation/v2/items/{itemId}";
     }
 
+    // - FiledError 파라미터 목록
+    //'objectName' : 오류가 발생한 객체의 이름
+    //'field' : 오류 필드
+    //'rejectedValue' : 사용자가 입력한 값
+    //'bindingFailure' : 타입 오류 같은 바인딩 실패인지, 검증 실패인지 구분 값
+    //'codes' : 메시지 코드
+    //'argument' : 메ㅣ지에서 사용하는 인자
+    //'defaultMessage' : 기본 오류 메시지
+
     @PostMapping("/add")
     public String addItemV2(@ModelAttribute Item item, BindingResult bindingResult,
                             RedirectAttributes redirectAttributes, Model model) {
