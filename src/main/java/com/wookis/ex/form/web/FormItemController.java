@@ -1,4 +1,4 @@
-package com.wookis.ex.form.web.form;
+package com.wookis.ex.form.web;
 
 import com.wookis.ex.domain.item.DeliveryCode;
 import com.wookis.ex.domain.item.Item;
