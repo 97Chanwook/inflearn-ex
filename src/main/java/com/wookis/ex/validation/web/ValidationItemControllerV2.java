@@ -134,7 +134,7 @@ public class ValidationItemControllerV2 {
     }
 
 
-    @PostMapping("/add")
+//    @PostMapping("/add")
     public String addItemV3(@ModelAttribute Item item, BindingResult bindingResult,
                             RedirectAttributes redirectAttributes, Model model) {
 
@@ -176,6 +176,61 @@ public class ValidationItemControllerV2 {
         return "redirect:/validation/v2/items/{itemId}";
     }
 
+
+    @PostMapping("/add")
+    public String addItemV4(@ModelAttribute Item item, BindingResult bindingResult,
+                            RedirectAttributes redirectAttributes, Model model) {
+
+        //  bindingResult.rejectValue("itemName", "required"); 를 사용하게 되면 Level1부터 그 아래로 순서대로 찾는다
+        // ex) 필드 오류의 경우
+        //[
+        // required.item.itemName, (Level1)
+        // required.itemName,   (Level2)
+        // required.java.lang.String,   (Level3)
+        // required     (Level4)
+        // ]
+        // ex) 객체 오류의 경우
+        //[
+        //  required.item,
+        //  required
+        //]
+
+        //검증 로직
+        if (!StringUtils.hasText(item.getItemName())) {
+            //bindingResult.rejectValue(필드 명, 메시지 코드 첫 문장)
+            bindingResult.rejectValue("itemName", "required");
+        }
+
+        if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 1000000) {
+            //bindingResult.rejectValue(필드 명, 메시지 코드 첫 문장, Argument, 기본 메시지)
+            bindingResult.rejectValue("price","range", new Object[]{1000, 1000000}, null);
+        }
+
+        if (item.getQuantity() == null || item.getQuantity() >= 9999) {
+            bindingResult.rejectValue("quantity","max", new Object[]{9999}, null);
+        }
+
+        //특정 필드가 아닌 복합 룰 검증
+        if (item.getPrice() != null && item.getQuantity() != null) {
+            int resultPrice = item.getPrice() * item.getQuantity();
+            if (resultPrice < 10000) {
+                //특정 필드가 없기 때문에 ObjectError 로 넘긴다.
+                bindingResult.reject("totalPriceMin", new Object[]{10000}, null);
+            }
+        }
+
+        // 검증에 실패하면 다시 입력 폼으로
+        // 레벨 별로 로그가 나온다.
+        if (bindingResult.hasErrors()) {
+            log.error("Errors = {}",bindingResult);
+            return "validation/v2/addForm";
+        }
+
+        Item savedItem = itemRepository.save(item);
+        redirectAttributes.addAttribute("itemId", savedItem.getId());
+        redirectAttributes.addAttribute("status", true);
+        return "redirect:/validation/v2/items/{itemId}";
+    }
 
 
     @GetMapping("/{itemId}/edit")
