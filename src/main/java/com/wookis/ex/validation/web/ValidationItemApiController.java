@@ -1,6 +1,6 @@
 package com.wookis.ex.validation.web;
 
-import com.wookis.ex.domain.ItemSaveForm;
+import com.wookis.ex.domain.form.ItemSaveForm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;

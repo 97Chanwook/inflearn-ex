@@ -1,4 +1,4 @@
-package com.wookis.ex.domain;
+package com.wookis.ex.domain.form;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -1,19 +1,15 @@
 package com.wookis.ex.validation.web;
 
-import com.wookis.ex.domain.ItemSaveForm;
-import com.wookis.ex.domain.ItemUpdateForm;
+import com.wookis.ex.domain.form.ItemSaveForm;
+import com.wookis.ex.domain.form.ItemUpdateForm;
 import com.wookis.ex.domain.item.Item;
 import com.wookis.ex.domain.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
