@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @Controller
-@RequestMapping("/members")
+@RequestMapping("/login/members")
 @RequiredArgsConstructor
 public class MemberController {
 
