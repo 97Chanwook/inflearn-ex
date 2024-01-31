@@ -111,7 +111,7 @@ public class LoginController {
     public String loginV4(@Validated @ModelAttribute("loginForm") LoginForm loginForm,
                           BindingResult bindingResult,
                           HttpServletRequest request,
-                          @RequestParam(defaultValue = "/") String redirectURL) {
+                          @RequestParam(defaultValue = "/login") String redirectURL) {
         if (bindingResult.hasErrors()) {
             return "/login/sign-in/loginForm";
         }
