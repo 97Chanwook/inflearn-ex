@@ -4,6 +4,7 @@ package com.wookis.ex.login;
 import com.wookis.ex.login.domain.member.Member;
 import com.wookis.ex.login.domain.member.MemberRepository;
 import com.wookis.ex.login.web.SessionConst;
+import com.wookis.ex.login.web.argumentresolver.Login;
 import com.wookis.ex.login.web.session.SessionManager;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -78,9 +79,20 @@ public class HomeController {
         return "/login/loginHome";
     }
 
-    @GetMapping
+//    @GetMapping
     public String homeLoginSpring(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member member,
                                   Model model) {
+
+        if (member == null) {
+            return "/login/home";
+        }
+
+        model.addAttribute("member", member);
+        return "/login/loginHome";
+    }
+
+    @GetMapping
+    public String homeLoginArgumentResolver(@Login Member member, Model model) {
 
         if (member == null) {
             return "/login/home";
