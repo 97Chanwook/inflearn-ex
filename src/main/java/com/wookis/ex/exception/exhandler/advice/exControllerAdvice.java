@@ -1,5 +1,6 @@
 package com.wookis.ex.exception.exhandler.advice;
 
+import com.wookis.ex.exception.api.ApiExceptionV2Controller;
 import com.wookis.ex.exception.exception.UserException;
 import com.wookis.ex.exception.exhandler.ErrorResult;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 
 @Slf4j
-@RestControllerAdvice
+@RestControllerAdvice(assignableTypes = ApiExceptionV2Controller.class)
 public class exControllerAdvice {
 
 
