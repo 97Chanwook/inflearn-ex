@@ -1,5 +1,6 @@
 package com.wookis.ex.typeconverter.controller;
 
+import com.wookis.ex.typeconverter.type.IpPort;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +20,15 @@ public class HelloController {
         return "OK";
     }
 
-    @GetMapping("hello-v2")
+    @GetMapping("/hello-v2")
     public String helloV2(@RequestParam Integer data) {
         System.out.println("data = " + data);
+        return "OK";
+    }
+
+    @GetMapping("/ip-port")
+    public String ipPort(@RequestParam IpPort ipPort) {
+        System.out.println("ipPort = " + ipPort);
         return "OK";
     }
 
