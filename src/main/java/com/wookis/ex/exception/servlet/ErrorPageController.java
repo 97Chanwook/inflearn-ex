@@ -1,10 +1,17 @@
 package com.wookis.ex.exception.servlet;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -30,6 +37,23 @@ public class ErrorPageController {
         log.info("Error Page 500");
         printError(request);
         return "error-page/500";
+    }
+
+    @RequestMapping(value = "/error-page/500", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, Object>> errorPage500Api(
+            HttpServletRequest request, HttpServletResponse response){
+
+        log.info("API errorPage 500");
+
+        Map<String, Object> result = new HashMap<>();
+
+        Exception ex = (Exception) request.getAttribute(ERROR_EXCEPTION);
+        Integer statusCode = (Integer) request.getAttribute(ERROR_STATUS_CODE);
+
+        result.put("status",request.getAttribute(ERROR_STATUS_CODE));
+        result.put("message",ex.getMessage());
+
+        return new ResponseEntity<>(result, HttpStatus.valueOf(statusCode));
     }
 
     private void printError(HttpServletRequest request) {
