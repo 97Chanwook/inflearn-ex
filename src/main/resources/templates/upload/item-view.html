@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>상품 조회</h2>
+  </div>
+
+  상품 명: <span th:text="${item.itemName}"></span><br>
+  첨부 파일: <a th:if="${item.attachFile}" th:href="|/upload/attach/${itemId}|"
+            th:text="${item.getAttachFile().getUploadFileName()}"></a>  <!-- th:text = 첨부파일을 다운받을 수 있는 링크 -->
+  <img th:each="uploadFile : ${item.uploadFiles}" th:src="|/upload/images/${uploadFile.getStoreFileName()}|" width="300" height="300">
+</div>
+</body>
+</html>
